@@ -1,1 +1,83 @@
-<p>dynamic-page works!</p>
+<h2>Reactive: <small> Dynamics </small></h2>
+<hr>
+
+<form autocomplete="off">
+
+  <!-- Name -->
+  <div class="mb-3 row">
+    <label class="col-sm-3 col-form-label">Name</label>
+    <div class="col-sm-9">
+      <input
+        class="form-control"
+        placeholder="Person name"
+      >
+      <span class="form-text text-danger">
+        Error message
+      </span>
+    </div>
+  </div>
+
+  <!-- Add favorite -->
+  <div class="mb-3 row">
+    <label class="col-sm-3 col-form-label">Add</label>
+    <div class="col-sm-9">
+      <div class="input-group">
+        <input
+          class="form-control"
+          placeholder="Add favorite"
+        >
+        <button
+          class="btn btn-outline-primary"
+          type="button"
+        >
+          Add favorite
+        </button>
+      </div>
+    </div>
+  </div>
+
+
+  <!-- Favorite games list -->
+  <div class="mb-3 row">
+    <label class="col-sm-3 col-form-label">Favorites</label>
+    <div class="col-sm-9">
+      <div class="mb-1">
+        <div class="input-group">
+          <input class="form-control">
+          <button
+            class="btn btn-outline-danger"
+            type="button"
+          >
+            Delete
+          </button>
+        </div>
+        <span class="form-text text-danger">
+           This field is required
+        </span>
+      </div>
+    </div>
+  </div>
+  <div class="row">
+    <div class="col-sm-12">
+      <button
+        type="submit"
+        class="btn btn-primary float-end"
+      >
+        <!-- [disabled]="myForm.invalid" -->
+        Save
+      </button>
+    </div>
+  </div>
+</form>
+
+<span>Valid</span>
+<pre>{{ 'object' | json }}</pre>
+<br>
+
+<span>Value</span>
+<pre>{{ 'object' | json }}</pre>
+<br>
+
+<span>Add game</span>
+<pre>{{ 'object' | json }}</pre>
+<pre>{{ 'object' | json }}</pre>
