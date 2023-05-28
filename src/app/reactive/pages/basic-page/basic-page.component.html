@@ -1,1 +1,87 @@
-<p>basic-page works!</p>
+<h2>Reactive: Basics</h2>
+<hr>
+<div class="row">
+  <div class="col">
+    <form autocomplete="off">
+
+      <!-- Product field -->
+      <div class="mb-3 row">
+        <label class="col-sm-3 col-form-label">Product</label>
+        <div class="col-sm-9">
+          <input
+            type="text"
+            class="form-control"
+            placeholder="Product name"
+          >
+          <span class="form-text text-danger">
+              <!-- Must have three characters -->
+              Error message
+          </span>
+        </div>
+      </div>
+
+      <!-- Product field -->
+      <div class="mb-3 row">
+        <label class="col-sm-3 col-form-label">Price</label>
+        <div class="col-sm-9">
+          <input
+            type="number"
+            class="form-control"
+            placeholder="Product price"
+          >
+          <span class="form-text text-danger">
+            Price must be 0 or higher
+          </span>
+        </div>
+      </div>
+
+      <!-- Existences field -->
+      <div class="mb-3 row">
+        <label class="col-sm-3 col-form-label">Existences</label>
+        <div class="col-sm-9">
+          <input type="number"
+                 class="form-control"
+                 placeholder="Product existences">
+
+          <span class="form-text text-danger">
+            Existences must be 0 or higher
+          </span>
+        </div>
+      </div>
+
+      <div class="row">
+        <div class="col">
+          <button
+            type="submit"
+            class="btn btn-primary float-end"
+          >
+            Save
+          </button>
+        </div>
+      </div>
+
+    </form>
+  </div>
+</div>
+<div class="row">
+  <div class="col">
+
+    <span>Valid</span>
+    <pre>{{ 'objeto' | json }}</pre>
+
+    <span>Pristine</span>
+    <pre>{{ 'objeto' | json }}</pre>
+
+    <span>Touched</span>
+    <pre>{{ 'objeto' | json }}</pre>
+
+    <span>Value</span>
+    <pre>{{ 'objeto' | json }}</pre>
+
+    <span>Price</span>
+    <pre>{{ 'objeto' | json }}</pre>
+
+    <span>Product</span>
+    <pre>{{ 'objeto' | json }}</pre>
+  </div>
+</div>
