@@ -1,22 +1,24 @@
-<h2>Validaciones Reactivas</h2>
+<h2>Reactive validations</h2>
 <hr>
 
 <div class="row">
   <div class="col">
 
-    <form autocomplete="off">
+    <form autocomplete="off" [formGroup]="myForm" (ngSubmit)="onSubmit()">
 
-      <!-- Nombre -->
+      <!-- Name -->
       <div class="row mb-3">
-        <label class="col-sm-3 col-form-label">Nombre</label>
+        <label class="col-sm-3 col-form-label">Name</label>
         <div class="col-sm-9">
-          <input type="text"
-                 class="form-control"
-                 placeholder="Nombre del usuario">
-
-          <span class="form-text text-danger">
-                        Debe de ser en formato de nombre y apellido
-                    </span>
+          <input
+            type="text"
+            class="form-control"
+            formControlName="name"
+            placeholder="User name"
+          >
+          <span *ngIf="isInvalidField('name')" class="form-text text-danger">
+            Must be in first and last name format
+          </span>
         </div>
       </div>
 
@@ -24,12 +26,15 @@
       <div class="row mb-3">
         <label class="col-sm-3 col-form-label">Email</label>
         <div class="col-sm-9">
-          <input type="email"
-                 class="form-control"
-                 placeholder="Email del usuario">
-          <span class="form-text text-danger">
-                        mensaje de error del email
-                    </span>
+          <input
+            type="email"
+            class="form-control"
+            placeholder="User email"
+            formControlName="email"
+          >
+          <span *ngIf="isInvalidField('name')" class="form-text text-danger">
+            Email error message
+          </span>
         </div>
       </div>
 
@@ -37,12 +42,15 @@
       <div class="row mb-3">
         <label class="col-sm-3 col-form-label">Username</label>
         <div class="col-sm-9">
-          <input type="text"
-                 class="form-control"
-                 placeholder="Nombre código del usuario">
-          <span class="form-text text-danger">
-                         El username no puede ser Strider
-                    </span>
+          <input
+            type="text"
+            class="form-control"
+            placeholder="User name"
+            formControlName="userName"
+          >
+          <span *ngIf="isInvalidField('userName')" class="form-text text-danger">
+            The username cannot be Strider
+          </span>
         </div>
       </div>
 
@@ -50,64 +58,75 @@
       <div class="row mb-3">
         <label class="col-sm-3 col-form-label">Password</label>
         <div class="col-sm-9">
-          <input type="password"
-                 class="form-control"
-                 placeholder="Password de su cuenta">
-
-          <span class="form-text text-danger">
-                         La contraseña debe de ser mayor de 6 caracteres.
-                    </span>
+          <input
+            type="password"
+            class="form-control"
+            placeholder="Password of your account"
+            formControlName="password"
+          >
+          <span *ngIf="isInvalidField('password')" class="form-text text-danger">
+            The password must be greater than 6 characters.
+          </span>
         </div>
       </div>
 
       <!-- Password2 -->
       <div class="row mb-3">
-        <label class="col-sm-3 col-form-label">Confirmar</label>
+        <label class="col-sm-3 col-form-label">Confirm</label>
         <div class="col-sm-9">
-          <input type="password"
-                 class="form-control"
-                 placeholder="Confirmar la contraseña">
-
-          <span class="form-text text-danger">
-                         Las contraseñas deben de ser iguales
-                    </span>
+          <input
+            type="password"
+            class="form-control"
+            placeholder="Confirm password"
+            formControlName="repeatedPassword"
+          >
+          <span *ngIf="isInvalidField('repeatedPassword')"  class="form-text text-danger">
+            Passwords must be the same
+          </span>
         </div>
       </div>
 
 
       <div class="row">
         <div class="col">
-          <button class="btn btn-primary float-end"
-                  type="submit">
-            Crear
+          <button
+            class="btn btn-primary float-end"
+            type="submit"
+          >
+            Create
           </button>
         </div>
       </div>
-
 
     </form>
   </div>
 </div>
 
 
-<h2>Form Valid: </h2>
-<h2>Form Status: </h2>
-<h2>Form Pending: </h2>
-<h2>Form errors</h2>
-<pre>{{ 'formulario' | json }}</pre>
+<h2>Form Valid: {{myForm.valid}}</h2>
+<h2>Form Status: {{myForm.status}}</h2>
+<h2>Form Pending: {{myForm.pending}}</h2>
+<h2>Form errors {{myForm.errors}}</h2>
 
-<h5>Nombre</h5>
-<pre>{{ 'formulario' | json }}</pre>
+
+<pre>{{ myForm.errors| json }}</pre>
+
+<h5>Name</h5>
+<pre>{{ myForm.value.name | json }}</pre>
+<pre>{{ myForm.controls['name'].errors | json }}</pre>
 
 <h5>Email</h5>
-<pre>{{ 'formulario' | json }}</pre>
+<pre>{{ myForm.value?.email | json }}</pre>
+<pre>{{ myForm.controls['email'].errors | json }}</pre>
 
 <h5>Username</h5>
-<pre>{{ 'formulario' | json }}</pre>
-
+<pre>{{ myForm.value?.userName | json }}</pre>
+<pre>{{ myForm.controls['userName'].errors | json }}</pre>
 
 <h5>Password</h5>
-<pre>{{ 'formulario' | json }}</pre>
+<pre>{{ myForm.value.password | json }}</pre>
+<pre>{{ myForm.controls['password'].errors | json }}</pre>
 
-<h5>Confirmar</h5>
-<pre>{{ 'formulario' | json }}</pre>
+<h5>Repeated Password</h5>
+<pre>{{ myForm.value?.repeatedPassword | json }}</pre>
+<pre>{{ myForm.controls['repeatedPassword'].errors | json }}</pre>
