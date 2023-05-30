@@ -18,7 +18,7 @@ const routes: Routes = [
         path: 'switches', component: SwitchesPageComponent
       },
       {
-        path: '**', redirectTo: 'basic'
+        path: '**', redirectTo: 'basics'
       },
     ]
   }
