@@ -2,7 +2,7 @@
 <hr>
 <div class="row">
   <div class="col">
-    <form autocomplete="off">
+    <form [formGroup]="myForm" (ngSubmit)="onSave()" autocomplete="off">
 
       <!-- Product field -->
       <div class="mb-3 row">
@@ -12,10 +12,10 @@
             type="text"
             class="form-control"
             placeholder="Product name"
+            formControlName="name"
           >
-          <span class="form-text text-danger">
-              <!-- Must have three characters -->
-              Error message
+          <span *ngIf="isInvalidField('name')" class="form-text text-danger">
+              {{getFieldError('name')}}
           </span>
         </div>
       </div>
@@ -28,8 +28,9 @@
             type="number"
             class="form-control"
             placeholder="Product price"
+            formControlName="price"
           >
-          <span class="form-text text-danger">
+          <span *ngIf="isInvalidField('price')" class="form-text text-danger">
             Price must be 0 or higher
           </span>
         </div>
@@ -39,11 +40,13 @@
       <div class="mb-3 row">
         <label class="col-sm-3 col-form-label">Existences</label>
         <div class="col-sm-9">
-          <input type="number"
-                 class="form-control"
-                 placeholder="Product existences">
-
-          <span class="form-text text-danger">
+          <input
+            type="number"
+            class="form-control"
+            placeholder="Product existences"
+            formControlName="inStorage"
+          >
+          <span *ngIf="isInvalidField('inStorage')" class="form-text text-danger">
             Existences must be 0 or higher
           </span>
         </div>
@@ -67,21 +70,27 @@
   <div class="col">
 
     <span>Valid</span>
-    <pre>{{ 'objeto' | json }}</pre>
+    <pre>{{ myForm.valid | json }}</pre>
 
     <span>Pristine</span>
-    <pre>{{ 'objeto' | json }}</pre>
+    <pre>{{ myForm.pristine | json }}</pre>
 
     <span>Touched</span>
-    <pre>{{ 'objeto' | json }}</pre>
+    <pre>{{ myForm.touched | json }}</pre>
 
     <span>Value</span>
-    <pre>{{ 'objeto' | json }}</pre>
+    <pre>{{ myForm.value | json }}</pre>
 
-    <span>Price</span>
-    <pre>{{ 'objeto' | json }}</pre>
+    <span>Price value</span>
+    <pre>{{ myForm.controls['price'].value | json }}</pre>
 
-    <span>Product</span>
-    <pre>{{ 'objeto' | json }}</pre>
+    <span>Price errors</span>
+    <pre>{{ myForm.controls['price'].errors | json }}</pre>
+
+    <span>Product value</span>
+    <pre>{{ myForm.controls['name'].value | json }}</pre>
+
+    <span>Product errors</span>
+    <pre>{{ myForm.controls['name'].errors | json }}</pre>
   </div>
 </div>
