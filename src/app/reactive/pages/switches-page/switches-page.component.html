@@ -2,7 +2,7 @@
 <hr>
 
 
-<form autocomplete="off">
+<form  [formGroup]="myForm" (ngSubmit)="onSave()" autocomplete="off">
 
   <!-- Radio -->
   <div class="row mb-3">
@@ -10,10 +10,15 @@
     <div class="col-sm-9">
 
       <div class="form-check">
-        <input class="form-check-input"
-               type="radio"
-               value="M"
-               id="radioMale">
+        <input
+          class="form-check-input"
+          type="radio"
+          value="M"
+          id="radioMale"
+          formControlName="gender"
+          name="gender"
+          checked
+        >
         <label class="form-check-label" for="radioMale">
           Male
         </label>
@@ -23,8 +28,10 @@
         <input
           class="form-check-input"
           type="radio"
-          value="F"
+          value="Female"
           id="radioFemale"
+          formControlName="gender"
+          name="gender"
         >
         <label class="form-check-label" for="radioFemale">
           Female
@@ -44,6 +51,7 @@
           class="form-check-input"
           type="checkbox"
           id="flexSwitchCheckChecked"
+          formControlName="wantNotifications"
         >
         <label class="form-check-label" for="flexSwitchCheckChecked">I want to receive notifications</label>
       </div>
@@ -60,12 +68,13 @@
           class="form-check-input"
           type="checkbox"
           id="flexCheckDefault"
+          formControlName="termsAndConditions"
         >
         <label class="form-check-label" for="flexCheckDefault">
           Terms and conditions of use
         </label>
       </div>
-      <span class="form-text text-danger">
+      <span *ngIf="isInvalidField('termsAndConditions')" class="form-text text-danger">
         You must accept the conditions of use
       </span>
     </div>
@@ -88,13 +97,13 @@
 
 
 <h5>Form values</h5>
-<pre>{{ 'object' | json }}</pre>
+<pre>{{ myForm.value | json }}</pre>
 <br>
 
 <h5>Person</h5>
-<pre>{{ 'object' | json }}</pre>
+<pre>{{ person | json }}</pre>
 <br>
 
 <h5>Valid</h5>
-<pre>{{ 'object' | json }}</pre>
+<pre>{{ myForm.valid | json }}</pre>
 
