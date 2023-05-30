@@ -1,7 +1,7 @@
 <h2>Reactive: <small> Dynamics </small></h2>
 <hr>
 
-<form autocomplete="off">
+<form [formGroup]="myForm" (ngSubmit)="onSubmit()" autocomplete="off">
 
   <!-- Name -->
   <div class="mb-3 row">
@@ -10,9 +10,10 @@
       <input
         class="form-control"
         placeholder="Person name"
+        formControlName="name"
       >
-      <span class="form-text text-danger">
-        Error message
+      <span *ngIf="isInvalidField('name')" class="form-text text-danger">
+        {{getFieldError('name')}}
       </span>
     </div>
   </div>
@@ -23,12 +24,15 @@
     <div class="col-sm-9">
       <div class="input-group">
         <input
+          type="text"
           class="form-control"
           placeholder="Add favorite"
+          [formControl]="newFavorite"
         >
         <button
           class="btn btn-outline-primary"
           type="button"
+          (click)="onAddToFavorites()"
         >
           Add favorite
         </button>
@@ -40,18 +44,23 @@
   <!-- Favorite games list -->
   <div class="mb-3 row">
     <label class="col-sm-3 col-form-label">Favorites</label>
-    <div class="col-sm-9">
-      <div class="mb-1">
+    <div class="col-sm-9" formArrayName="favoriteGames">
+      <div class="mb-1" *ngFor="let favorite of favoriteGames.controls; let i = index">
         <div class="input-group">
-          <input class="form-control">
+          <input
+            [formControlName]="i"
+            class="form-control"
+            type="text"
+          >
           <button
             class="btn btn-outline-danger"
             type="button"
+            (click)="onDeleteFavorite(i)"
           >
             Delete
           </button>
         </div>
-        <span class="form-text text-danger">
+        <span *ngIf="isInvalidFieldInArray(favoriteGames, i)" class="form-text text-danger">
            This field is required
         </span>
       </div>
@@ -62,6 +71,7 @@
       <button
         type="submit"
         class="btn btn-primary float-end"
+        (click)="onSubmit()"
       >
         <!-- [disabled]="myForm.invalid" -->
         Save
