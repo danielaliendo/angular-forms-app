@@ -1,1 +1,16 @@
-<p>side-menu works!</p>
+<h2>Pages</h2>
+<hr>
+
+<h3 class="mt-3">Reactive</h3>
+<ul class="list-group">
+  <li *ngFor="let item of reactiveMenu" class="list-group-item" [routerLink]="item.route" routerLinkActive="active">
+    {{item.title}}
+  </li>
+</ul>
+
+<h3 class="mt-3">Validations</h3>
+<ul class="list-group">
+  <li *ngFor="let item of authMenu" class="list-group-item" [routerLink]="item.route" routerLinkActive="active">
+    {{item.title}}
+  </li>
+</ul>
